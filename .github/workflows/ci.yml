@@ -26,7 +26,9 @@ jobs:
           pip install --upgrade pytest pytest-cov
 
       - name: Run model tests
-        run: make model-test
+        working-directory: challenge
+        run: pytest ../tests/model --cov=. --cov-report term
 
       - name: Run api tests
-        run: make api-test
+        working-directory: challenge
+        run: pytest ../tests/api --cov=. --cov-report term
