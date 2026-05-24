@@ -47,3 +47,11 @@ A Docker image was created to containerize the API and run it in the cloud.  The
 The deployed API is available at: https://challenge-mle-282015016889.us-central1.run.app
 
 A stress test was run against the deployed API with 100 concurrent users  over 60 seconds, resulting in 7200 requests with 0 failures and an average response time of 226ms.
+
+## Part IV: CI/CD
+
+Two GitHub Actions workflows were configured to automate testing and deployment.
+
+The CI workflow runs on every push and pull request to `main`. It installs the dependencies and runs both the model and API tests automatically.
+
+The CD workflow runs on every push to `main`. It builds the Docker image for linux, pushes it to Google Container Registry and deploys the updated version to Cloud Run. Authentication with GCP is handled through Workload Identity Federation, which allows GitHub Actions to authenticate securely without storing credentials.
