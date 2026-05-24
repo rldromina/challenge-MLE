@@ -39,3 +39,11 @@ Two Pydantic models were defined to validate the incoming request: `Flight`, whi
 The validation rules are: `TIPOVUELO` only accepts `"N"` or `"I"`, and `MES` must be between 1 and 12. Any invalid input returns a 400 error.
 
 The `POST /predict` endpoint receives the request, preprocesses the flights using the `DelayModel` and returns the predictions as a list of integers.
+
+## Part III: Deployment
+
+A Docker image was created to containerize the API and run it in the cloud.  The image was built for linux/amd64 and pushed to Google Container Registry (GCR).  The API was then deployed on Google Cloud Run, which allows it to scale  automatically based on traffic.
+
+The deployed API is available at: https://challenge-mle-282015016889.us-central1.run.app
+
+A stress test was run against the deployed API with 100 concurrent users  over 60 seconds, resulting in 7200 requests with 0 failures and an average response time of 226ms.
